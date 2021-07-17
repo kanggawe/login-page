@@ -1,0 +1,56 @@
+<html>
+<head>
+$(if refresh-timeout)
+<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+$(endif)
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />   
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<title id="title"></title>
+<link rel="stylesheet" href="css/style.css">
+  <script>
+            var url = "./status.html"; // url tujuan
+            var count = 10; // dalam detik
+            function countDown() {
+                if (count > 0) {
+                    count--;
+                    var waktu = count + 1;
+                    setTimeout("countDown()", 1000);
+                } else {
+                    window.location.href = url;
+                }
+            }
+            countDown();
+        </script>
+    
+</head>
+<body $(if advert-pending == 'yes') onLoad="openAdvert()" $(endif)>
+    <div class="ie-fixMinHeight">
+        <div class="main">
+            <div class="wrap">
+
+		<div class="box-utama" style="margin-top:40px;background:#03a9f4;">
+			<div style="padding:15px;">
+			$(if login-by == 'trial')
+				<br><div style="text-align: center;"><h3>Welcome trial user!</h3></div><br>
+			$(elif login-by != 'mac')
+				<br><div style="text-align: center;"><h3>Welcome <b id="user">$(username)</b>!</h3></div><br>
+			$(endif)
+			<center class="box"><span style="font-size: 5em; color: Tomato;"><i class="fas fa-check"></i></span>
+			<h3>Anda telah terhubung di jaringan <br /><b id="dname"></b></h3></center>
+			<button class="btn btn-success right form-control" onclick="window.location='./status'">Check Status</buton>
+			</div>
+	</div>
+
+
+
+<script type="text/javascript">
+	document.getElementById('title').innerHTML = window.location.hostname + " > success";	
+    document.getElementById('dname').innerHTML = "Hotspot";	
+</script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
